@@ -4,6 +4,16 @@ let emailInput = document.getElementById('email');
 let phoneInput = document.getElementById('phone');
 let itemList = document.getElementById('itemlist');
 
+window.addEventListener("DOMContentLoaded",() =>{
+  axios.get("https://crudcrud.com/api/83fed4bff44a4c54a01caa3af7228fd1/appointmentData")
+  .then((response) =>{
+    console.log(response)
+  })
+  .catch((error)=>{
+    console.log(error);
+  })
+})
+
 form.addEventListener('submit',addInLocal);
 
 function addInLocal(e){
@@ -16,6 +26,7 @@ function addInLocal(e){
     };
     let myData_serialized = JSON.stringify(myData);
     localStorage.setItem(myData.name , myData_serialized );
+    
     axios.post("https://crudcrud.com/api/83fed4bff44a4c54a01caa3af7228fd1/appointmentData", myData)
     .then((response)=>{
       console.log(response)
@@ -77,3 +88,4 @@ function editItem(e) {
     let li = e.target.parentElement;
     itemList.removeChild(li);
 }
+
